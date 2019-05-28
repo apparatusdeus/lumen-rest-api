@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+    public function getCustomer(Request $request, $id): string
+    {
+        $customer = Customer::find($id);
+        return response()->json($customer);
+    }
+
     public function createCustomer(Request $request): string
     {
         $customer = Customer::create($request->all());

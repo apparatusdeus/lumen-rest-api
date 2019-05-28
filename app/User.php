@@ -29,4 +29,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * Get the customer of a user
+     */
+    public function customer()
+    {
+        $this->hasone('App\Customer', 'customerId');
+    }
 }

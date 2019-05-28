@@ -28,12 +28,14 @@ $router->group(
         $router->get('customer','CustomerController@index');
         $router->post('customer','CustomerController@createCustomer');
 
+        $router->get('customer/{id}','CustomerController@getCustomer');
         $router->put('customer/{id}','CustomerController@updateCustomer');
         $router->delete('customer/{id}','CustomerController@deleteCustomer');
 
         $router->get('transaction','TransactionController@index');
         $router->post('transaction','TransactionController@createTransaction');
 
+        $router->get('transaction/{id}','TransactionController@getTransaction');
         $router->put('transaction/{id}','TransactionController@updateTransaction');
         $router->delete('transaction/{id}','TransactionController@deleteTransaction');
     }

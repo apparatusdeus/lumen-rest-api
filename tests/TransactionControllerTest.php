@@ -46,4 +46,23 @@ class TransactionControllerTest extends TestCase
             ]
         );
     }
+
+    public function test_get_transaction()
+    {
+        $this->get('/api/v1/transaction/1');
+        echo $this->response->content();
+
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure(
+            [
+                '*' => [
+                    'name',
+                    'cnp',
+                    'updated_at',
+                    'created_at',
+                    'customerId'
+                ]
+            ]
+        );
+    }
 }

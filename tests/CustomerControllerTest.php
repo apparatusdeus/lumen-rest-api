@@ -23,7 +23,7 @@ class CustomerControllerTest extends TestCase
                     'cnp',
                     'updated_at',
                     'created_at',
-                    'customerId'
+                    'id'
                 ]
             ]
         );
@@ -34,6 +34,9 @@ class CustomerControllerTest extends TestCase
         $this->post('/api/v1/customer', ['name' => 'James', 'cnp' => 'Something']);
 
         $this->seeStatusCode(200);
+
+        $json = json_decode('{' . explode('{', $this->response->content())[1], true);
+
         $this->seeJsonStructure(
             [
                 'name',
@@ -41,13 +44,16 @@ class CustomerControllerTest extends TestCase
                 'updated_at',
                 'created_at',
                 'id'
-            ]
+            ],
+            $json
         );
     }
 
     public function test_get_customer()
     {
         $this->get('/api/v1/customer/1');
+
+        $json = json_decode('{' . explode('{', $this->response->content())[1], true);
 
         $this->seeStatusCode(200);
         $this->seeJsonStructure(
@@ -57,7 +63,8 @@ class CustomerControllerTest extends TestCase
                 'updated_at',
                 'created_at',
                 'id'
-            ]
+            ],
+            $json
         );
     }
 }
